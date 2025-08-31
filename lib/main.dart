@@ -8,12 +8,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Depth Wallpaper Example',
       theme: ThemeData(textTheme: GoogleFonts.interTextTheme()),
       home: const MyHomePage(),
     );
@@ -35,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: DepthWallpaper(
         imagePath: 'assets/images/example_2.jpeg',
         useLocalProcessing: false,
+        // TODO: Replace with your own API key from https://www.remove.bg/api
         removeBackgroundApiKey: 'RTzvFVmPrEz2rmH1n3Vpvq9x',
         clockWidget: Padding(
           padding: const EdgeInsets.only(top: 120.0),

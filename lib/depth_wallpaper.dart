@@ -78,7 +78,6 @@ class _DepthWallpaperState extends State<DepthWallpaper>
 
       _animationController.forward();
     } catch (e) {
-      print('Error processing image: $e');
       setState(() {
         _isProcessing = false;
       });
@@ -120,28 +119,23 @@ class _DepthWallpaperState extends State<DepthWallpaper>
         _backgroundImage = await _createBlurredBackground(imageBytes);
       }
     } catch (e) {
-      print('AI processing failed, falling back to local processing: $e');
       await _processLocally(imageBytes);
     }
   }
 
   Future<void> _processLocally(Uint8List imageBytes) async {
-    try {
-      // Basic local processing using edge detection and masking
-      final img.Image? originalImg = img.decodeImage(imageBytes);
-      if (originalImg == null) return;
+    // Basic local processing using edge detection and masking
+    final img.Image? originalImg = img.decodeImage(imageBytes);
+    if (originalImg == null) return;
 
-      // Create a simple subject detection (this is a simplified approach)
-      // In a real implementation, you'd use more sophisticated algorithms
-      final img.Image foregroundImg = _extractSubject(originalImg);
-      final img.Image backgroundImg = _createBackground(originalImg);
+    // Create a simple subject detection (this is a simplified approach)
+    // In a real implementation, you'd use more sophisticated algorithms
+    final img.Image foregroundImg = _extractSubject(originalImg);
+    final img.Image backgroundImg = _createBackground(originalImg);
 
-      // Convert to UI images
-      _foregroundImage = await _imgToUiImage(foregroundImg);
-      _backgroundImage = await _imgToUiImage(backgroundImg);
-    } catch (e) {
-      print('Local processing failed: $e');
-    }
+    // Convert to UI images
+    _foregroundImage = await _imgToUiImage(foregroundImg);
+    _backgroundImage = await _imgToUiImage(backgroundImg);
   }
 
   img.Image _extractSubject(img.Image original) {
@@ -370,29 +364,28 @@ class _IOSLockScreenClockState extends State<IOSLockScreenClock> {
           Transform(
             transform: Matrix4.identity()..scale(.8, 2.5),
             alignment: Alignment.center,
-            child: 
-          Text(
-            _formatTime(_currentTime),
-            style: TextStyle(
-              fontSize: widget.timeSize,
-              fontWeight: widget.timeWeight,
-              color: widget.textColor,
-              height: 0.9,
-              letterSpacing: -2.0,
-              shadows: [
-                Shadow(
-                  offset: const Offset(0, 3),
-                  blurRadius: 12,
-                  color: widget.shadowColor,
-                ),
-                Shadow(
-                  offset: const Offset(0, 1),
-                  blurRadius: 4,
-                  color: widget.shadowColor.withOpacity(0.5),
-                ),
-              ],
+            child: Text(
+              _formatTime(_currentTime),
+              style: TextStyle(
+                fontSize: widget.timeSize,
+                fontWeight: widget.timeWeight,
+                color: widget.textColor,
+                height: 0.9,
+                letterSpacing: -2.0,
+                shadows: [
+                  Shadow(
+                    offset: const Offset(0, 3),
+                    blurRadius: 12,
+                    color: widget.shadowColor,
+                  ),
+                  Shadow(
+                    offset: const Offset(0, 1),
+                    blurRadius: 4,
+                    color: widget.shadowColor.withOpacity(0.5),
+                  ),
+                ],
+              ),
             ),
-          ),
           ),
 
           const SizedBox(height: 120),
@@ -527,6 +520,7 @@ class IOSStatusBarClock extends StatelessWidget {
     );
   }
 }
+
 // Complete iOS lock screen replica
 class IOSLockScreenReplica extends StatelessWidget {
   final String imagePath;
