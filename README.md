@@ -7,6 +7,9 @@ Depth Wallpaper is a Flutter project that removes the background from images and
 - Background removal for images.
 - Portrait-style clock design inspired by iOS 16.
 
+
+<img src="screenshots/rec.gif" width="100%" title="homescreen2">
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
